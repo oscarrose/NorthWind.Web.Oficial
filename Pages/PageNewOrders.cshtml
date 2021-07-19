@@ -1,10 +1,6 @@
 ﻿@page
 @model Northwind.WebUI.Pages.PageOrdersModel
-@{
-    ViewData["Title"] = "Orders";
-
-
-}
+@{ ViewData["Title"] = " New Orders"; }
 
 @*Para importar los styles aqui empienza*@
 @section styles{
@@ -18,455 +14,277 @@
 }
 @*Para importar los styles aqui termina*@
 
-<body>
-
-    @*El titulo de la pages*@
-    <!--<h1>New Orders</h1>-->
-    @*Boton cancel y save Formulario aqui empieza*@
-    <div class="row">
-        <div class="col-xs-12">
 
 
-            <div class="col-xs-6">
-                <div class="form-group">
-                    &nbsp;
-                    <div class="pull-right">
+    @*El aqui empieza titulo de la pages*@
+    <div class="col-md-6">
+        <h1>New order</h1>
+    </div>
+    @*El aqui termina el titulo de la pages*@
 
 
-                        <button type="submit" class="btn btn-labeled btn-success">
-                            <span class="btn-label"><i class="fa fa-check"></i></span>Save order
-                        </button>
 
 
-                        @*<button type="reset" class="btn btn-labeled btn-danger" id="btn-cancelar">
-                            <span class="btn-label"><i class="fa fa-remove"></i></span>Cancel order
-                        </button>*@
+    @*Aqui empieza en form para las orderes*@
+<form method="post" id="saveOrderForm">
 
 
+
+    <div>
+        @*Boton cancel y save Formulario aqui empieza*@
+        <div class="row">
+            <div class="col-xs-12">
+
+
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        &nbsp;
+                        <div class="pull-right">
+
+
+
+                            <button type="submit" class="btn btn-labeled btn-success">
+                                <span class="btn-label"><i class="fa fa-check"></i></span>Save order
+                            </button>
+
+
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        @*Boton cancel y save Formulario aqui termina*@
+
+
+
+
+
+    </div>
+
+
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger">
+            @Model.ErrorMessage
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-3">
+            <div>
+                <label class="form-label">Customer</label>
+                <select class="form-control" asp-items="Model.Customers" asp-for="Orders.CustomerID">
+                    <option value="">select an customers</option>
+                </select>
+                <span class="invalid-feedback d-block" asp-validation-for="Orders.CustomerID"></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div>
+                <label class="form-label">Employee</label>
+                <select class="form-control" asp-items="Model.Employees" asp-for="Orders.EmployeeID">
+                    <option value="">Select an employees</option>
+                </select>
+                <span class="invalid-feedback d-block" asp-validation-for="Orders.EmployeeID"></span>
+            </div>
+        </div><div class="col-md-2">
+            <div>
+                <label class="form-label">Order date</label>
+                <input class="form-control" type="date" asp-for="Orders.OrderDate" />
+                <span class="invalid-feedback d-block" asp-validation-for="Orders.OrderDate"></span>
+            </div>
+        </div><div class="col-md-2">
+            <div>
+                <label class="form-label" asp-for="Orders.RequiredDate"></label>
+                <input class="form-control" type="date" asp-for="Orders.RequiredDate" />
+                <span class="invalid-feedback d-block" asp-validation-for="Orders.RequiredDate"></span>
+            </div>
+        </div><div class="col-md-2">
+            <div>
+                <label class="form-label">Shipped date</label>
+                <input class="form-control" type="date" asp-for="Orders.ShippedDate" />
+                <span class="invalid-feedback d-block"></span>
+            </div>
+        </div><div class="col-md-2">
+            <div>
+                <label class="form-label">Ship via</label>
+                <select class="form-control" asp-items="Model.Shippers" asp-for="Orders.ShipVia">
+                    <option value="">select an shippers</option>
+                </select>
+                <span class="invalid-feedback d-block"></span>
+            </div>
+        </div><div class="col-md-2">
+            <div>
+                <label class="form-label">Freight</label>
+                <input class="form-control" asp-for="Orders.Freight" />
+                <span class="invalid-feedback d-block"></span>
             </div>
         </div>
     </div>
-    @*Boton cancel y save Formulario aqui termina*@
+    <h3 class="mt-1">Shipping details</h3>
+    <div class="row mt-1">
+        <div class="col-md-2">
+            <div>
+                <label class="form-label">Ship name</label>
+                <input class="form-control" asp-for="Orders.ShipName" />
+                <span class="invalid-feedback d-block"></span>
+            </div>
+        </div><div class="col-md-2">
+            <div>
+                <label class="form-label">Ship address</label>
+                <input class="form-control" asp-for="Orders.ShipAddress" />
+                <span class="invalid-feedback d-block"></span>
+            </div>
+        </div><div class="col-md-2">
+            <div>
+                <label class="form-label">Ship city</label>
+                <input class="form-control" asp-for="Orders.ShipCity" />
+                <span class="invalid-feedback d-block"></span>
+            </div>
+        </div><div class="col-md-2">
+            <div>
+                <label class="form-label">Ship region</label>
+                <input class="form-control" asp-for="Orders.ShipRegion" />
+                <span class="invalid-feedback d-block"></span>
+            </div>
+        </div><div class="col-md-2">
+            <div>
+                <label class="form-label">Ship postal code</label>
+                <input class="form-control" asp-for="Orders.ShipPostalCode" />
+                <span class="invalid-feedback d-block"></span>
+            </div>
+        </div><div class="col-md-2">
+            <div>
+                <label class="form-label">Ship country</label>
+                <input class="form-control" asp-for="Orders.ShipCountry" />
+                <span class="invalid-feedback d-block"></span>
+            </div>
+        </div>
+    </div>
 
-    @*Para el formulario aqui empieza*@
-    @*<form method="post" id="OrderForm">
-        <div class="container">
-            <div class="row row-cols-4">
 
+    <div class="mt-2">
 
-                <div class="col">
-
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="InputCustomerID" name="InputCustomerID" placeholder="1 2 3">
-                        <label for="InputCustomerID">Customer ID</label>
-
-                        <div>
-                            <label class="invalid-feedback d-block" for="InputCustomerID"> </label>
-                        </div>
+        <div class="d-flex">
+            <div class="row flex-grow-1">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Product</label>
+                        <select class="form-control" asp-items="Model.Products" id="newProductSelect">
+                            <option value="">-- Select a product --</option>
+                        </select>
+                        <span class="invalid-feedback d-block"></span>
                     </div>
-
                 </div>
 
-                <div class="col">
-
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="InputEmployeeID" name="InputEmployeeID" placeholder="1 2 3">
-                        <label for="InputEmployeeID">Employee ID</label>
-                        <div>
-                            <label class="invalid-feedback d-block" for="InputEmployeeID"> </label>
-                        </div>
-
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="form-label">Quantity</label>
+                        <input class="form-control" id="newProductQuantity" />
+                        <span class="invalid-feedback d-block"></span>
                     </div>
-
-
                 </div>
-
-                <div class="col">
-
-                    <div class="form-floating mb-3">
-                        <input type="date" class="form-control" id="OrderDate" name="OrderDate" placeholder="date">
-                        <label for="OrderDate">Order Date</label>
-                        <div>
-                            <label class="invalid-feedback d-block" for="OrderDate"> </label>
-                        </div>
-
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="form-label">Discount</label>
+                        <input class="form-control" id="newProductDiscount" />
+                        <span class="invalid-feedback d-block"></span>
                     </div>
-
-
-
                 </div>
+            </div>
 
-                <div class="col">
-                    <div class="form-floating mb-3">
-                        <input type="date" class="form-control" id="RequiredDate" name="RequiredDate" placeholder="date">
-                        <label for="RequiredDate">Required Date</label>
-                        <div>
-                            <label class="invalid-feedback d-block" for="RequiredDate"> </label>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
+            <div class="ms-2 d-flex flex-column-reverse">
+                <button class="btn btn-primary" id="addProductButton" type="button">
+                    Add product
+                </button>
             </div>
         </div>
 
-
-
-        <div class="container">
-            <div class="row row-cols-4">
-                <div class="col">
-                    <div class="form-floating mb-3">
-                        <input type="date" class="form-control" id="ShippedDate" name="ShippedDate" placeholder="date">
-                        <label for="ShippedDate">Shipped Date</label>
-
-
-                        <div>
-                            <label class="invalid-feedback d-block" for="ShippedDate"> </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="ShipVia" name="ShipVia" placeholder="text">
-                        <label for="ShipVia">Ship Via</label>
-
-                        <div>
-                            <label class="invalid-feedback d-block" for="ShipVia"> </label>
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-                <div class="col">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="Freight" name="Freight" placeholder="text">
-                        <label for="Freight">Freight</label>
-                        <div>
-                            <label class="invalid-feedback d-block" for="Freight"> </label>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-                <div class="col">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="ShipName" name="ShipName" placeholder="text">
-                        <label for="ShipName">Ship Name</label>
-
-                        <div>
-                            <label class="invalid-feedback d-block" for="ShipName"> </label>
-
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="col">
-
-
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="inputShipCountry" name="inputShipCountry" placeholder="text">
-                        <label for="inputShipCountry" class="form-label">Ship Country</label>
-
-
-                        <div>
-                            <label class="invalid-feedback d-block" for="inputShipCountry"> </label>
-
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="col">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="ShipCity" name="ShipCity" placeholder="text">
-                        <label for="ShipCity">Ship City</label>
-                        <di>
-                            <label class="invalid-feedback d-block" for="ShipCity"> </label>
-
-                        </di>
-                    </div>
-
-
-                </div>
-
-                <div class="col">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="ShipRegion" name="ShipRegion" placeholder="text">
-                        <label for="ShipRegion">Ship Region</label>
-                        <div>
-                            <label class="invalid-feedback d-block" for="ShipRegion"> </label>
-
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="col">
-
-
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="ShipAddress" name="ShipAddress" placeholder="1234 Main St">
-                        <label for="ShipAddress">Ship Address</label>
-                        <div>
-                            <label class="invalid-feedback d-block" for="ShipAddress"> </label>
-
-                        </div>
-                    </div>
-
-
-
-
-                </div>
-
-                <div class="col">
-
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="ShipPostalCode" name="ShipPostalCode" placeholder="text">
-                        <label for="ShipPostalCode">Ship Postal Code</label>
-                        <div>
-                            <label class="invalid-feedback d-block" for="ShipPostalCode"> </label>
-
-                        </div>
-                    </div>
-
-
-                </div>
-
-
-
-
-
-
-            </div>
-
-
-
-
-
-
-
-        </div>
-
-    </form>*@
-    @*Para el formulario aqui termina*@
-
-
-@*<form method="post" id="saveOrderForm">
-
-        <div class="row">
-            <div class="col-md-6">
-                <h1>New order</h1>
-            </div>
-            <div class="col-md-6 text-end">
-                <button class="btn btn-primary" type="submit">Save</button>
-            </div>
-        </div>
-
-        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
-        {
-            <div class="alert alert-danger">
-                @Model.ErrorMessage
-            </div>
-        }
-
-        <div class="row">
-            <div class="col-md-3">
-                <div>
-                    <label class="form-label">Customer</label>
-                    <select class="form-control" asp-items="Model.Customers" asp-for="Order.CustomerID">
-                        <option value="">-- select an item --</option>
-                    </select>
-                    <span class="invalid-feedback d-block" asp-validation-for="Order.CustomerID"></span>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div>
-                    <label class="form-label">Employee</label>
-                    <select class="form-control" asp-items="Model.Employees" asp-for="Order.EmployeeID">
-                        <option value="">-- select an item --</option>
-                    </select>
-                    <span class="invalid-feedback d-block" asp-validation-for="Order.EmployeeID"></span>
-                </div>
-            </div><div class="col-md-2">
-                <div>
-                    <label class="form-label">Order date</label>
-                    <input class="form-control" type="date" asp-for="Order.OrderDate" />
-                    <span class="invalid-feedback d-block" asp-validation-for="Order.OrderDate"></span>
-                </div>
-            </div><div class="col-md-2">
-                <div>
-                    <label class="form-label" asp-for="Order.RequiredDate"></label>
-                    <input class="form-control" type="date" asp-for="Order.RequiredDate" />
-                    <span class="invalid-feedback d-block" asp-validation-for="Order.RequiredDate"></span>
-                </div>
-            </div><div class="col-md-2">
-                <div>
-                    <label class="form-label">Shipped date</label>
-                    <input class="form-control" type="date" asp-for="Order.ShippedDate" />
-                    <span class="invalid-feedback d-block"></span>
-                </div>
-            </div><div class="col-md-2">
-                <div>
-                    <label class="form-label">Ship via</label>
-                    <select class="form-control" asp-items="Model.Shippers" asp-for="Order.ShipVia"></select>
-                    <span class="invalid-feedback d-block"></span>
-                </div>
-            </div><div class="col-md-2">
-                <div>
-                    <label class="form-label">Freight</label>
-                    <input class="form-control" asp-for="Order.Freight" />
-                    <span class="invalid-feedback d-block"></span>
-                </div>
-            </div>
-        </div>
-        <h3 class="mt-1">Shipping details</h3>
-        <div class="row mt-1">
-            <div class="col-md-2">
-                <div>
-                    <label class="form-label">Ship name</label>
-                    <input class="form-control" asp-for="Order.ShipName" />
-                    <span class="invalid-feedback d-block"></span>
-                </div>
-            </div><div class="col-md-2">
-                <div>
-                    <label class="form-label">Ship address</label>
-                    <input class="form-control" asp-for="Order.ShipAddress" />
-                    <span class="invalid-feedback d-block"></span>
-                </div>
-            </div><div class="col-md-2">
-                <div>
-                    <label class="form-label">Ship city</label>
-                    <input class="form-control" asp-for="Order.ShipCity" />
-                    <span class="invalid-feedback d-block"></span>
-                </div>
-            </div><div class="col-md-2">
-                <div>
-                    <label class="form-label">Ship region</label>
-                    <input class="form-control" asp-for="Order.ShipRegion" />
-                    <span class="invalid-feedback d-block"></span>
-                </div>
-            </div><div class="col-md-2">
-                <div>
-                    <label class="form-label">Ship postal code</label>
-                    <input class="form-control" asp-for="Order.ShipPostalCode" />
-                    <span class="invalid-feedback d-block"></span>
-                </div>
-            </div><div class="col-md-2">
-                <div>
-                    <label class="form-label">Ship country</label>
-                    <input class="form-control" asp-for="Order.ShipCountry" />
-                    <span class="invalid-feedback d-block"></span>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="mt-2">
-
-            <div class="d-flex">
-                <div class="row flex-grow-1">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Product</label>
-                            <select class="form-control" asp-items="Model.Products" id="newProductSelect">
-                                <option value="">-- Select a product --</option>
-                            </select>
-                            <span class="invalid-feedback d-block"></span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label class="form-label">Quantity</label>
-                            <input class="form-control" id="newProductQuantity" />
-                            <span class="invalid-feedback d-block"></span>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label class="form-label">Discount</label>
-                            <input class="form-control" id="newProductDiscount" />
-                            <span class="invalid-feedback d-block"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ms-2 d-flex flex-column-reverse">
-                    <button class="btn btn-primary" id="addProductButton" type="button">
-                        Add product
-                    </button>
-                </div>
-            </div>
-
-            <table class="table" id="orderDetailTable">
-                <thead>
-                    <tr>
-                        <td>Product</td>
-                        <td width="100" class="text-end">Unit price</td>
-                        <td width="100">Quantity</td>
-                        <td width="100">Discount</td>
-                        <td width="100" class="text-end">Amount</td>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    @if (Model?.Order?.Detail != null)
+        <table class="table" id="orderDetailTable">
+            <thead>
+                <tr>
+                    <td>Product</td>
+                    <td width="100" class="text-end">Unit price</td>
+                    <td width="100">Quantity</td>
+                    <td width="100">Discount</td>
+                    <td width="100" class="text-end">Amount</td>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model?.Orders?.Detail != null)
+                {
+                    foreach (var item in Model.Orders.Detail)
                     {
-                        foreach (var item in Model.Order.Detail)
-                        {
-                            <tr>
-                                <td>
-                                    <input type="hidden" name="Order.Detail.Index" value="@item.Guid" />
-                                    <input type="hidden" name="Order.Detail[@item.Guid].Guid" value="@item.Guid" />
-                                    <input type="hidden" name="Order.Detail[@item.Guid].ProductID" value="@item.ProductID" />
-                                    <input type="hidden" name="Order.Detail[@item.Guid].ProductName" value="@item.ProductName" />
-                                    <span>@item.ProductName</span>
-                                </td>
-                                <td class="text-end">
-                                    <input class="unitPriceInput" type="hidden" name="Order.Detail[@item.Guid].UnitPrice" value="@item.UnitPrice" />
-                                    <span>@item.UnitPrice.ToString("N2")</span>
-                                </td>
-                                <td>
-                                    <input class="form-control form-control-sm quantityInput" type="text" name="Order.Detail[@item.Guid].Quantity" value="@item.Quantity" />
-                                </td>
-                                <td>
-                                    <input class="form-control form-control-sm discountInput" type="text" name="Order.Detail[@item.Guid].Discount" value="@item.Discount" />
-                                </td>
-                                <td class="text-end">
-                                    <input type="hidden" name="Order.Detail[@item.Guid].Total" value="@item.Total" />
-                                    <span class="total">@item.Total.ToString("N2")</span>
-                                </td>
-                            </tr>
-                        }
+                        <tr>
+                            <td>
+                                <input type="hidden" name="Orders.Detail.Index" value="@item.Guid" />
+                                <input type="hidden" name="Orders.Detail[@item.Guid].Guid" value="@item.Guid" />
+                                <input type="hidden" name="Orders.Detail[@item.Guid].ProductID" value="@item.ProductID" />
+                                <input type="hidden" name="Orders.Detail[@item.Guid].ProductName" value="@item.ProductName" />
+                                <span>@item.ProductName</span>
+                            </td>
+                            <td class="text-end">
+                                <input class="unitPriceInput" type="hidden" name="Orders.Detail[@item.Guid].UnitPrice" value="@item.UnitPrice" />
+                                <span>@item.UnitPrice.ToString("N2")</span>
+                            </td>
+                            <td>
+                                <input class="form-control form-control-sm quantityInput" type="text" name="Orders.Detail[@item.Guid].Quantity" value="@item.Quantity" />
+                            </td>
+                            <td>
+                                <input class="form-control form-control-sm discountInput" type="text" name="Orders.Detail[@item.Guid].Discount" value="@item.Discount" />
+                            </td>
+                            <td class="text-end">
+                                <input type="hidden" name="Orderd.Detail[@item.Guid].Total" value="@item.Total" />
+                                <span class="total">@item.Total.ToString("N2")</span>
+                            </td>
+                        </tr>
                     }
-                </tbody>
-            </table>
+                 }
+            </tbody>
+        </table>
 
-        </div>
+    </div>
 
-    </form>*@
+</form>
 
-</body>
+@*Aqui termina en form para las orderes*@
+
+<script type="text/html" id="orderDetailTemplate">
+    <tr>
+        <td>
+            <input type="hidden" name="Orders.Detail.Index" value="{guid}" />
+            <input type="hidden" name="Orders.Detail[{guid}].Guid" value="{guid}" />
+            <input type="hidden" name="Orders.Detail[{guid}].ProductID" value="{productId}" />
+            <input type="hidden" name="Orders.Detail[{guid}].ProductName" value="{productName}" />
+            <span>{productName}</span>
+        </td>
+        <td class="text-end">
+            <input class="unitPriceInput" type="hidden" name="Orders.Detail[{guid}].UnitPrice" value="{unitPrice}" />
+            <span>{unitPriceWithFormat}</span>
+        </td>
+        <td>
+            <input class="form-control form-control-sm quantityInput" type="text" name="Orders.Detail[{guid}].Quantity" value="{quantity}" />
+        </td>
+        <td>
+            <input class="form-control form-control-sm discountInput" type="text" name="Orders.Detail[{guid}].Discount" value="{discount}" />
+        </td>
+        <td class="text-end">
+            <input class="totalInput" type="hidden" name="Orderd.Detail[{guid}].Total" value="{total}" />
+            <span class="total">{total}</span>
+        </td>
+    </tr>
+</script>
 
 
 
 @*Para los scripts aqui empienza*@
+
 @section scripts{
     <script src="~/lib/sweetalert2/sweetalert2.min.js"></script>
     <script src="~/js/orders.js"></script>
+    <script src="~/js/New-Orders.js"></script>
 }
+
 @*Para los scripts aqui termina*@

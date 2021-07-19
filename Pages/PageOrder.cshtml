@@ -32,69 +32,67 @@
     </nav>
     @*Aqui termina el button de search*@
 
+    @*Aqui empieza el button para add una orders*@
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end" lass="navbar navbar-expand-lg ">
+        <a class="btn btn-primary" asp-page="PageNewOrders">Add order</a>
+       
+    </div>
+
+    @*Aqui termina el buttton para agregar una orders*@
+    <hr>
 
     @*Para capa title de las columnas*@
     <div id="wrapper-header">
-        <table class="table table-striped table-hover orders-table id="orders-table">
+        <table class="table table-hover" id="orders-table">
             <thead class="table-dark">
 
-                <tr>
-                    <th class="ColmOrderID">Order ID</th>
-                    <th class="ColmCustomerID">Customer ID</th>
-                    <th class="ColmEmployeeID">Employee ID</th>
+                <tr wir>
+                    <th style="text-size-adjust:auto" class="ColmOrderID">OrderId</th>
+                    <th class="ColmCustomerID">CustomerId</th>
+                    <th class="ColmEmployeeID">EmployeeId</th>
 
                     <th class="ColmOrderDate">Order Date</th>
-                    <th class="ColmRequiredDate">Required Date</th>
-                    <th class="ColmShippedDate">Shipped Date</th>
+                    <th style="text-size-adjust:auto" class="ColmRequiredDate">Required Date</th>
                     <th class="ColmShipVia">Ship Via</th>
                     <th class="ColmFreight">Freight</th>
 
                     <th class="ColmShipName">Ship Name</th>
-                    <th class="ColmShipAddress">Ship Address</th>
+                    <th style="text-size-adjust:auto" class="ColmShipAddress">Ship Address</th>
                     <th class="ColmShipCity">Ship City</th>
-                    <th class="ColmShipRegion">Ship Region</th>
-                    <th class="ColmPostalCode">Ship Postal Code</th>
+                    <th class="ColmShipRegion" style="text-size-adjust:auto">Ship Region</th>
+                    <th class="ColmPostalCode">Ship zip</th>
                     <th class="ColmShipCountry">Ship Country</th>
 
                 </tr>
 
             </thead>
+
+            <tbody>
+                @foreach (var item in Model.Orders)
+                {
+    <tr>
+
+        <td>@item.OrderID</td>
+        <td>@item.CustomerID</td>
+        <td>@item.EmployeeID</td>
+        <td>@item.OrderDate</td>
+        <td>@item.RequiredDate</td>
+        <td>@item.ShipVia</td>
+        <td>@item.Freight</td>
+        <td>@item.ShipName</td>
+        <td>@item.ShipAddress</td>
+        <td>@item.ShipCity</td>
+        <td>@item.ShipRegion</td>
+        <td>@item.ShipPostalCode</td>
+        <td>@item.ShipCountry</td>
+    </tr>}
+
+
+            </tbody>
         </table>
 
     </div>
     @*Aqui termina para el title de la culumna*@
-
-    @*Para los elmentos de la columna probar*@
-    <div id="wrapper-content">
-        <table class="table table-striped table-hover orders-table id="orders-table">
-            <tbody>
-                @for (int i = 0; i <= 20; i++)
-                {
-                    <tr data-id="@i">
-                        <td class="ColmOrderID">1 @i</td>
-                        <td class="ColmCustomerID">5  @i</td>
-                        <td class="ColmEmployeeID">6 @i</td>
-
-                        <td class="ColmOrderDate">28/02/2021 @i</td>
-                        <td class="ColmRequiredDate">06/04/2021  @i</td>
-                        <td class="ColmShippedDate">12/06/2021 @i</td>
-
-                        <td class="ColmShipVia">1 @i</td>
-                        <td class="ColmFreight">5.36  @i</td>
-                        <td class="ColmShipName">Hanari Carnes @i</td>
-
-                        <td class="ColmShipAddress">59 rue de l'Abbaye @i</td>
-                        <td class="ColmShipCity">5.36  @i</td>
-                        <td class="ColmShipRegion">Táchira @i</td>
-
-                        <td class="ColmPostalCode">44087 @i</td>
-                        <td class="ColmShipCountry">Brazil @i</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    @*aqui termina para los elementos de la columna*@
 
 
 

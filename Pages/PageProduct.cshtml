@@ -3,3 +3,94 @@
 @{
     ViewData["Title"] = "Products";
 }
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Orders</title>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css">*@
+</head>
+
+<body>
+    <h1>@ViewData["Title"]</h1>
+
+    @*Para el button de buscar*@
+    <nav class="navbar navbar-expand-lg ">
+        <div ="container-fluid">
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+
+        </div>
+    </nav>
+    @*Aqui termina el button de search*@
+
+    @*Aqui empieza el button para add una orders*@
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end" lass="navbar navbar-expand-lg ">
+        <a class="btn btn-primary" >Add Products</a>
+
+    </div>
+
+    @*Aqui termina el buttton para agregar una orders*@
+    <hr>
+
+    @*Para capa title de las columnas*@
+    <div id="wrapper-header">
+        <table class="table table-hover" id="product-table">
+            <thead class="table-dark">
+
+                <tr wir>
+                    <th style="text-size-adjust:auto" class="ProductID">ProductID</th>
+                    <th class="">Product Name</th>
+                    <th class="ColmSuppliers">SupplierID</th>
+
+                    <th class="ColmCategoryID">Category ID</th>
+                    <th style="text-size-adjust:auto" class="ColmQuantityPerUnit">QuantityPerUnit</th>
+                    <th class="ColmUnitPrice ">Unit Price </th>
+                    <th class="ColmUnitsInStock ">Units InStock </th>
+
+                    <th class="ColmUnitsOnOrder">UnitsOn Order</th>
+                    <th style="text-size-adjust:auto" class="ColmReorderLevel">SReorder Level</th>
+                    <th class="ColmDiscontinued">Discontinued</th>
+                    
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.Products)
+                {
+    <tr>
+
+        <td>@item.ProductID</td>
+        <td>@item.ProductID</td>
+        <td>@item.SupplierID</td>
+        <td>@item.CategoryID</td>
+        <td>@item.QuantityPerUnit</td>
+        <td>@item.UnitPrice</td>
+        <td>@item.UnitsInStock</td>
+        <td>@item.UnitsOnOrder</td>
+        <td>@item.ReorderLevel</td>
+        <td>@item.Discontinued</td>
+        
+        
+    </tr>
+}
+
+
+            </tbody>
+        </table>
+
+    </div>
+    @*Aqui termina para el title de la culumna*@
+
+
+
+
+</body>
+
+</html>
