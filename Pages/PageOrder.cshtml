@@ -1,0 +1,104 @@
+﻿@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Orders";
+}
+
+
+
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Orders</title>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css">*@
+</head>
+
+<body>
+    <h1>@ViewData["Title"]</h1>
+
+    @*Para el button de buscar*@
+    <nav class="navbar navbar-expand-lg ">
+        <div ="container-fluid">
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+
+        </div>
+    </nav>
+    @*Aqui termina el button de search*@
+
+
+    @*Para capa title de las columnas*@
+    <div id="wrapper-header">
+        <table class="table table-striped table-hover orders-table id="orders-table">
+            <thead class="table-dark">
+
+                <tr>
+                    <th class="ColmOrderID">Order ID</th>
+                    <th class="ColmCustomerID">Customer ID</th>
+                    <th class="ColmEmployeeID">Employee ID</th>
+
+                    <th class="ColmOrderDate">Order Date</th>
+                    <th class="ColmRequiredDate">Required Date</th>
+                    <th class="ColmShippedDate">Shipped Date</th>
+                    <th class="ColmShipVia">Ship Via</th>
+                    <th class="ColmFreight">Freight</th>
+
+                    <th class="ColmShipName">Ship Name</th>
+                    <th class="ColmShipAddress">Ship Address</th>
+                    <th class="ColmShipCity">Ship City</th>
+                    <th class="ColmShipRegion">Ship Region</th>
+                    <th class="ColmPostalCode">Ship Postal Code</th>
+                    <th class="ColmShipCountry">Ship Country</th>
+
+                </tr>
+
+            </thead>
+        </table>
+
+    </div>
+    @*Aqui termina para el title de la culumna*@
+
+    @*Para los elmentos de la columna probar*@
+    <div id="wrapper-content">
+        <table class="table table-striped table-hover orders-table id="orders-table">
+            <tbody>
+                @for (int i = 0; i <= 20; i++)
+                {
+                    <tr data-id="@i">
+                        <td class="ColmOrderID">1 @i</td>
+                        <td class="ColmCustomerID">5  @i</td>
+                        <td class="ColmEmployeeID">6 @i</td>
+
+                        <td class="ColmOrderDate">28/02/2021 @i</td>
+                        <td class="ColmRequiredDate">06/04/2021  @i</td>
+                        <td class="ColmShippedDate">12/06/2021 @i</td>
+
+                        <td class="ColmShipVia">1 @i</td>
+                        <td class="ColmFreight">5.36  @i</td>
+                        <td class="ColmShipName">Hanari Carnes @i</td>
+
+                        <td class="ColmShipAddress">59 rue de l'Abbaye @i</td>
+                        <td class="ColmShipCity">5.36  @i</td>
+                        <td class="ColmShipRegion">Táchira @i</td>
+
+                        <td class="ColmPostalCode">44087 @i</td>
+                        <td class="ColmShipCountry">Brazil @i</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    @*aqui termina para los elementos de la columna*@
+
+
+
+
+</body>
+
+</html>
